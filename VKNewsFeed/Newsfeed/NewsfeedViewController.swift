@@ -14,8 +14,13 @@ protocol NewsfeedDisplayLogic: class {
 
 class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
 
+    @IBOutlet weak var table: UITableView!
+    
+    
   var interactor: NewsfeedBusinessLogic?
   var router: (NSObjectProtocol & NewsfeedRoutingLogic)?
+    
+    private var feedViewModel = FeedViewModel.init(cells: [])
 
   // MARK: Object lifecycle
   
@@ -23,7 +28,8 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
-  
+    
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
@@ -51,10 +57,43 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-  }
+    setup()
+    //table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    table.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
+    interactor?.makeRequest(request: Newsfeed.Model.Request.RequestType.getNewsFeed)
+    }
   
   func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
 
+    switch viewModel {
+
+
+    case .displayNewsFeed(let feedViewModel):
+        self.feedViewModel = feedViewModel
+        table.reloadData()
+    }
   }
-  
+}
+
+
+extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feedViewModel.cells.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
+        let cellViewMode = feedViewModel.cells[indexPath.row]
+        cell.set(viewModel: cellViewMode)
+        return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        interactor?.makeRequest(request: .some)
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 212
+    }
 }

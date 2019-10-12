@@ -41,13 +41,13 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         VKSdk.wakeUpSession(scope) { [delegate] (state, error) in
             if state == VKAuthorizationState.authorized {
                 print("VKAuthorizationState.authorized")
-                self.delegate?.authServiceSignIn()
+                delegate?.authServiceSignIn()
             } else if state == VKAuthorizationState.initialized{
                 print("VKAuthorizationState.initialized")
                 VKSdk.authorize(scope)
             } else {
                 print("auth problems, state \(state) error \(String(describing: error))")
-                self.delegate?.authServiceDidSignInFail()
+                delegate?.authServiceDidSignInFail()
             }
         }
     }
