@@ -18,6 +18,8 @@
 		FA30AE2B23504D2F00763B3F /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA30AE2423504D2F00763B3F /* NewsfeedViewController.swift */; };
 		FA30AE2C23504D2F00763B3F /* NewsfeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA30AE2523504D2F00763B3F /* NewsfeedInteractor.swift */; };
 		FA6E1A0A2373310700494C8B /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A092373310700494C8B /* WebImageView.swift */; };
+		FA6E1A0C23741F9D00494C8B /* NewsFeedCellLayerCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A0B23741F9D00494C8B /* NewsFeedCellLayerCalculator.swift */; };
+		FA6E1A0E23757E3B00494C8B /* String + Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A0D23757E3B00494C8B /* String + Height.swift */; };
 		FA768D4F23523B14008E94E7 /* NewsfeedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA768D4E23523B14008E94E7 /* NewsfeedViewController.storyboard */; };
 		FA768D522352498A008E94E7 /* NewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA768D512352498A008E94E7 /* NewsfeedCell.swift */; };
 		FA768D54235249E3008E94E7 /* NewsfeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA768D53235249E3008E94E7 /* NewsfeedCell.xib */; };
@@ -59,6 +61,8 @@
 		FA30AE2423504D2F00763B3F /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
 		FA30AE2523504D2F00763B3F /* NewsfeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedInteractor.swift; sourceTree = "<group>"; };
 		FA6E1A092373310700494C8B /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		FA6E1A0B23741F9D00494C8B /* NewsFeedCellLayerCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellLayerCalculator.swift; sourceTree = "<group>"; };
+		FA6E1A0D23757E3B00494C8B /* String + Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Height.swift"; sourceTree = "<group>"; };
 		FA768D4E23523B14008E94E7 /* NewsfeedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsfeedViewController.storyboard; sourceTree = "<group>"; };
 		FA768D512352498A008E94E7 /* NewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCell.swift; sourceTree = "<group>"; };
 		FA768D53235249E3008E94E7 /* NewsfeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedCell.xib; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				FA768D512352498A008E94E7 /* NewsfeedCell.swift */,
 				FA768D53235249E3008E94E7 /* NewsfeedCell.xib */,
+				FA6E1A0B23741F9D00494C8B /* NewsFeedCellLayerCalculator.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				FA30AE2223504D2F00763B3F /* NewsfeedRouter.swift */,
 				FAC48E29234BC3C700C074ED /* UIViewController+Storyboard.swift */,
 				FA6E1A092373310700494C8B /* WebImageView.swift */,
+				FA6E1A0D23757E3B00494C8B /* String + Height.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA30AE1C234FADE400763B3F /* FeedResponse.swift in Sources */,
+				FA6E1A0E23757E3B00494C8B /* String + Height.swift in Sources */,
 				FA30AE2B23504D2F00763B3F /* NewsfeedViewController.swift in Sources */,
 				FAC48E24234A77E800C074ED /* AppDelegate.swift in Sources */,
 				FAC48E1E234A4A6700C074ED /* AuthViewController.swift in Sources */,
@@ -295,6 +302,7 @@
 				FA6E1A0A2373310700494C8B /* WebImageView.swift in Sources */,
 				FA30AE1E2350314000763B3F /* NetworkDataFetcher.swift in Sources */,
 				FA30AE2823504D2F00763B3F /* NewsfeedWorker.swift in Sources */,
+				FA6E1A0C23741F9D00494C8B /* NewsFeedCellLayerCalculator.swift in Sources */,
 				FAC48E1B234A44F200C074ED /* AuthService.swift in Sources */,
 				FAC48E30234C454B00C074ED /* API.swift in Sources */,
 				FA768D522352498A008E94E7 /* NewsfeedCell.swift in Sources */,
