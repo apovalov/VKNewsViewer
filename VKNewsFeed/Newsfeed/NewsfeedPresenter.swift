@@ -32,7 +32,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         }
         
         let feedViewModel = FeedViewModel.init(cells: cells)
-        viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayNewsFeed(feedViewModel: feedViewModel))
+        viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayNewsfeed(feedViewModel: feedViewModel))
         }
     }
     

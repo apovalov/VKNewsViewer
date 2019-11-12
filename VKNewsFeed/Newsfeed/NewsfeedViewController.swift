@@ -59,14 +59,14 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
-    //table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    table.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reusId)
     table.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
     
     table.separatorStyle = .none
     table.backgroundColor = .clear
     view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
     
-    interactor?.makeRequest(request: Newsfeed.Model.Request.RequestType.getNewsFeed)
+    interactor?.makeRequest(request: Newsfeed.Model.Request.RequestType.getNewsfeed)
     }
   
   func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
@@ -74,7 +74,7 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     switch viewModel {
 
 
-    case .displayNewsFeed(let feedViewModel):
+    case .displayNewsfeed(let feedViewModel):
         self.feedViewModel = feedViewModel
         table.reloadData()
     }
@@ -89,9 +89,13 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
+
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCodeCell.reusId, for: indexPath) as! NewsfeedCodeCell
         let cellViewMode = feedViewModel.cells[indexPath.row]
         cell.set(viewModel: cellViewMode)
+
         return cell
     }
     
@@ -103,5 +107,6 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cellViewModel = feedViewModel.cells[indexPath.row]
         return cellViewModel.sizes.totalHeight
+        //return 212
     }
 }
