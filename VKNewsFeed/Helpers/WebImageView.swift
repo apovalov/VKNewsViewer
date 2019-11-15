@@ -16,12 +16,12 @@ class WebImageView: UIImageView {
         return  }
     
         if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
+            // from cache
             self.image = UIImage(data: cachedResponse.data)
-            print("from cache")
             return
         }
         
-        print("drom internet")
+        // from internet
         let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
                 if let data = data, let response = response {
