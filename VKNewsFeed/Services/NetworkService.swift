@@ -20,7 +20,7 @@ final class NetworkService: Networking {
     
     func request(path: String, params: [String : String],  completion: @escaping (Data?, Error?) -> Void) {
         guard let token = authService.token else { return }
-        let params = ["filters": "post, photo"]
+        let params = params//["filters": "post, photo"]
         
         var allParams = params
         allParams["access_token"] = token
@@ -54,7 +54,7 @@ final class NetworkService: Networking {
         
         components.scheme = API.scheme
         components.host = API.host
-        components.path = API.newsFeed
+        components.path = path
         print(params)
         components.queryItems = params.map{URLQueryItem(name: $0, value: $1)}
         
