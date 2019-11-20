@@ -23,6 +23,9 @@
 		FA4938882381823F001F9E40 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4938872381823F001F9E40 /* TitleView.swift */; };
 		FA49388A2381851D001F9E40 /* InsetableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4938892381851D001F9E40 /* InsetableTextField.swift */; };
 		FA49388C2381AE3B001F9E40 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49388B2381AE3B001F9E40 /* UserResponse.swift */; };
+		FA49388F2382CAA2001F9E40 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49388E2382CAA2001F9E40 /* FooterView.swift */; };
+		FA4938912382D051001F9E40 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA4938902382D051001F9E40 /* Localizable.stringsdict */; };
+		FA49389423855740001F9E40 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49389323855740001F9E40 /* GradientView.swift */; };
 		FA6E1A0A2373310700494C8B /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A092373310700494C8B /* WebImageView.swift */; };
 		FA6E1A0C23741F9D00494C8B /* NewsfeedCellLayerCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A0B23741F9D00494C8B /* NewsfeedCellLayerCalculator.swift */; };
 		FA6E1A0E23757E3B00494C8B /* String + Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E1A0D23757E3B00494C8B /* String + Height.swift */; };
@@ -75,6 +78,9 @@
 		FA4938872381823F001F9E40 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		FA4938892381851D001F9E40 /* InsetableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetableTextField.swift; sourceTree = "<group>"; };
 		FA49388B2381AE3B001F9E40 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		FA49388E2382CAA2001F9E40 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		FA4938902382D051001F9E40 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		FA49389323855740001F9E40 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		FA6E1A092373310700494C8B /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		FA6E1A0B23741F9D00494C8B /* NewsfeedCellLayerCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCellLayerCalculator.swift; sourceTree = "<group>"; };
 		FA6E1A0D23757E3B00494C8B /* String + Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Height.swift"; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 				FAC48E1C234A450000C074ED /* Services */,
 				FA0576F7233F9B0A00781C7B /* Assets.xcassets */,
 				FAC48E23234A77E800C074ED /* AppDelegate.swift */,
+				FA4938902382D051001F9E40 /* Localizable.stringsdict */,
 				FAC48E22234A775400C074ED /* Info.plist */,
 				FA0576F9233F9B0A00781C7B /* LaunchScreen.storyboard */,
 			);
@@ -151,6 +158,8 @@
 		FA30AE1F23504CE200763B3F /* Newsfeed */ = {
 			isa = PBXGroup;
 			children = (
+				FA49389223855725001F9E40 /* View */,
+				FA49388D2382CA8D001F9E40 /* FooterView */,
 				FA49388623818216001F9E40 /* TitleView */,
 				FA49387F237F37D6001F9E40 /* GalleryView */,
 				FA768D502352496F008E94E7 /* Cell */,
@@ -160,6 +169,7 @@
 				FA30AE2023504D2F00763B3F /* NewsfeedPresenter.swift */,
 				FA30AE2323504D2F00763B3F /* NewsfeedModels.swift */,
 				FA30AE2123504D2F00763B3F /* NewsfeedWorker.swift */,
+				FA30AE2223504D2F00763B3F /* NewsfeedRouter.swift */,
 			);
 			path = Newsfeed;
 			sourceTree = "<group>";
@@ -181,6 +191,23 @@
 				FA4938892381851D001F9E40 /* InsetableTextField.swift */,
 			);
 			path = TitleView;
+			sourceTree = "<group>";
+		};
+		FA49388D2382CA8D001F9E40 /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				FA49388E2382CAA2001F9E40 /* FooterView.swift */,
+			);
+			path = FooterView;
+			sourceTree = "<group>";
+		};
+		FA49389223855725001F9E40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E1A092373310700494C8B /* WebImageView.swift */,
+				FA49389323855740001F9E40 /* GradientView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA768D502352496F008E94E7 /* Cell */ = {
@@ -227,9 +254,7 @@
 		FAC48E2B234BC40900C074ED /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FA30AE2223504D2F00763B3F /* NewsfeedRouter.swift */,
 				FAC48E29234BC3C700C074ED /* UIViewController+Storyboard.swift */,
-				FA6E1A092373310700494C8B /* WebImageView.swift */,
 				FA6E1A0D23757E3B00494C8B /* String + Height.swift */,
 				FA731A9D2379621400DD21FF /* Constraints.swift */,
 			);
@@ -301,6 +326,7 @@
 				FA768D4F23523B14008E94E7 /* NewsfeedViewController.storyboard in Resources */,
 				FA768D54235249E3008E94E7 /* NewsfeedCell.xib in Resources */,
 				FA0576F8233F9B0A00781C7B /* Assets.xcassets in Resources */,
+				FA4938912382D051001F9E40 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA49388523803A52001F9E40 /* RowLayout.swift in Sources */,
+				FA49388F2382CAA2001F9E40 /* FooterView.swift in Sources */,
 				FA30AE1C234FADE400763B3F /* FeedResponse.swift in Sources */,
 				FA6E1A0E23757E3B00494C8B /* String + Height.swift in Sources */,
 				FA731A9C23794E8D00DD21FF /* NewsfeedCodeCell.swift in Sources */,
@@ -357,6 +384,7 @@
 				FAC48E30234C454B00C074ED /* API.swift in Sources */,
 				FA493881237F37FF001F9E40 /* GalleryCollectionView.swift in Sources */,
 				FA768D522352498A008E94E7 /* NewsfeedCell.swift in Sources */,
+				FA49389423855740001F9E40 /* GradientView.swift in Sources */,
 				FA30AE2C23504D2F00763B3F /* NewsfeedInteractor.swift in Sources */,
 				FA49388A2381851D001F9E40 /* InsetableTextField.swift in Sources */,
 			);

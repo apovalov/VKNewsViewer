@@ -11,10 +11,22 @@
         <scene sceneID="vGa-Y1-ucz">
             <objects>
                 <viewController id="Ylc-jk-Kzq" customClass="NewsfeedViewController" customModule="VKNewsFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="03D-tT-UMQ">
+                    <view key="view" contentMode="scaleToFill" id="03D-tT-UMQ" customClass="GradientView" customModule="VKNewsFeed" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWq-HH-CBs" customClass="GradientView" customModule="VKNewsFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="1" green="0.63166999820000003" blue="0.62208002809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="1" green="0.81500113009999997" blue="0.55389541389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-k6-Kg3">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -24,11 +36,15 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="SWq-HH-CBs" firstAttribute="top" secondItem="03D-tT-UMQ" secondAttribute="top" id="7zx-J7-hf8"/>
                             <constraint firstItem="jYC-k6-Kg3" firstAttribute="top" secondItem="03D-tT-UMQ" secondAttribute="top" id="8Hx-Nq-PqD"/>
                             <constraint firstItem="xTB-OH-JPk" firstAttribute="bottom" secondItem="jYC-k6-Kg3" secondAttribute="bottom" id="Cap-eU-zkg"/>
+                            <constraint firstItem="SWq-HH-CBs" firstAttribute="trailing" secondItem="xTB-OH-JPk" secondAttribute="trailing" id="N2Z-RJ-IJk"/>
                             <constraint firstItem="jYC-k6-Kg3" firstAttribute="leading" secondItem="xTB-OH-JPk" secondAttribute="leading" id="YeL-fo-93l"/>
+                            <constraint firstItem="SWq-HH-CBs" firstAttribute="leading" secondItem="xTB-OH-JPk" secondAttribute="leading" id="hQa-5F-2fQ"/>
+                            <constraint firstItem="SWq-HH-CBs" firstAttribute="bottom" secondItem="xTB-OH-JPk" secondAttribute="bottom" id="ji8-Bn-hf4"/>
                             <constraint firstItem="xTB-OH-JPk" firstAttribute="trailing" secondItem="jYC-k6-Kg3" secondAttribute="trailing" id="p4h-Sc-lw2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xTB-OH-JPk"/>
@@ -39,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0r-X9-Don" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="96"/>
+            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </scene>
     </scenes>
 </document>

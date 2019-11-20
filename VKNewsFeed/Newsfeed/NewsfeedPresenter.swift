@@ -9,11 +9,11 @@
 import UIKit
 
 protocol NewsfeedPresentationLogic {
-  func presentData(response: Newsfeed.Model.Response.ResponseType)
+    func presentData(response: Newsfeed.Model.Response.ResponseType)
 }
 
 class NewsfeedPresenter: NewsfeedPresentationLogic {
-  weak var viewController: NewsfeedDisplayLogic?
+    weak var viewController: NewsfeedDisplayLogic?
     var cellLayoutCalculator: FeedCellLayoutCalculatorProtocol = FeedCellLayoutCalculator()
     
     let dateFormatter: DateFormatter = {
@@ -23,25 +23,26 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         return dt
     }()
     
-  func presentData(response: Newsfeed.Model.Response.ResponseType) {
-    switch response {
-        
-    case .presentNewsfeed(let feed, let revealPostIds):
-        
-        print(revealPostIds)
-        
-        let cells = feed.items.map { (feedItem) in
-            cellViewModel(from: feedItem, profiles: feed.profiles, groups: feed.groups, revealdedPostIds: revealPostIds)
+    func presentData(response: Newsfeed.Model.Response.ResponseType) {
+        switch response {
+            
+        case .presentNewsfeed(let feed, let revealdedPostIds):
+                    
+            let cells = feed.items.map { (feedItem) in
+                cellViewModel(from: feedItem, profiles: feed.profiles, groups: feed.groups, revealdedPostIds: revealdedPostIds)
+            }
+            
+            let footerTitle = String.localizedStringWithFormat(NSLocalizedString("newsfeed cells count", comment: ""), cells.count)
+            let feedViewModel = FeedViewModel.init(cells: cells, footerTitle: footerTitle)
+            viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayNewsfeed(feedViewModel: feedViewModel))
+            
+        case .presentUserInfo(let user):
+            let userViewModel = UserViewModel.init(photoUrlString: user?.photo100)
+            viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayUser(userViewModel: userViewModel))
+            
+        case .presentFooterLoader:
+                  viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayFooterLoader)
         }
-        
-        let feedViewModel = FeedViewModel.init(cells: cells)
-        viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayNewsfeed(feedViewModel: feedViewModel))
-        
-    case .presentUserInfo(let user):
-        let userViewModel = UserViewModel.init(photoUrlString: user?.photo100)
-        viewController?.displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData.displayUser(userViewModel: userViewModel))
-    }
-    
     }
     
     private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group], revealdedPostIds: [Int]) -> FeedViewModel.Cell {
@@ -53,26 +54,30 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitle = dateFormatter.string(from: date)
         
-//        let isFullSized = revealdedPostIds.contains{ (postId) -> Bool in
-//            return postId == feedItem.postId
-//        }
+        //        let isFullSized = revealdedPostIds.contains{ (postId) -> Bool in
+        //            return postId == feedItem.postId
+        //        }
         
         let isFullSized = revealdedPostIds.contains(feedItem.postId)
         
         let sizes = cellLayoutCalculator.sizes(postText: feedItem.text, photoAttachments: photoAttachments, isFullSizedPost: isFullSized)
         
+        let postText = feedItem.text?.replacingOccurrences(of: "<br>", with: "\n")
+        
         return FeedViewModel.Cell.init(postId: feedItem.postId,
                                        iconUrlString: profile.photo,
                                        name: profile.name,
                                        date: dateTitle,
-                                       text: feedItem.text,
-                                       likes: String(feedItem.likes?.count ?? 0),
-                                       comments: String(feedItem.comments?.count ?? 0),
-                                       shares: String(feedItem.reposts?.count ?? 0),
-                                       views: String(feedItem.views?.count ?? 0),
+                                       text: postText,
+                                       likes: formattedCounter(feedItem.likes?.count),
+                                       comments: formattedCounter(feedItem.comments?.count),
+                                       shares: formattedCounter(feedItem.reposts?.count),
+                                       views: formattedCounter(feedItem.views?.count),
                                        photoAttachments: photoAttachments,
                                        sizes: sizes)
     }
+    
+    
     
     private func profile(for sourceId: Int, profiles: [Profile], groups: [Group]) -> ProfileRepresentable {
         let profilesOrGroups: [ProfileRepresentable] = sourceId >= 0 ? profiles : groups
@@ -81,6 +86,17 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
             myProfileRepresentable.id == normalSourceId
         }
         return profileRepresentable!
+    }
+    
+    private func formattedCounter(_ counter: Int?) -> String? {
+        guard let counter = counter, counter > 0 else { return nil }
+        var counterString = String(counter)
+        if 4...6 ~= counterString.count {
+            counterString = String(counterString.dropLast(3)) + "K"
+        } else if counterString.count > 6 {
+            counterString = String(counterString.dropLast(6)) + "M"
+        }
+        return counterString
     }
     
     private func photoAttacment(feedItem: FeedItem) -> FeedViewModel.FeedCellPhotoAttachment? {
@@ -97,7 +113,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
     
     private func photoAttachments(feedItem: FeedItem) -> [FeedViewModel.FeedCellPhotoAttachment] {
         guard let attachments = feedItem.attachments else { return [] }
-    
+        
         return attachments.compactMap({(attachment) -> FeedViewModel.FeedCellPhotoAttachment? in
             guard let photo = attachment.photo else { return nil }
             return FeedViewModel.FeedCellPhotoAttachment.init(photoUrlString: photo.srcBIG,
